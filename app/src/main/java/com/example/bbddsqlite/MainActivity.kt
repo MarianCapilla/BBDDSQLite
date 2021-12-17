@@ -1,6 +1,6 @@
 package com.example.bbddsqlite
 
-import android.database.sqlite.SQLiteDatabase
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -47,6 +47,16 @@ class MainActivity : AppCompatActivity() {
                 } while (cursor.moveToNext())
             }
 
+        }
+
+        binding.btIrABorrar.setOnClickListener{
+            val intent = Intent(this, BorrarDatos::class.java)
+            startActivity(intent)
+        }
+
+        binding.btIrAModificar.setOnClickListener{
+            val intent = Intent(this, ModificarDatos::class.java)
+            startActivity(intent)
         }
 
 

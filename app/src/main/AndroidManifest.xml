@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BBDDSQLite">
         <activity
+            android:name=".ModificarDatos"
+            android:exported="false" />
+        <activity
+            android:name=".BorrarDatos"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

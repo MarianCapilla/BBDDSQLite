@@ -30,17 +30,42 @@ class miSQLiteHelper (context: Context) : SQLiteOpenHelper(
         datos.put("nombre", nombre)
         datos.put("email", email)
 
-        val db = this.writableDatabase /*Abrimos la base de datos en modo escritura*/
+        val db = this.writableDatabase
+        /*Abrimos la base de datos en modo escritura*/
         db.insert("amigos", null, datos)
         db.close()
     }
 
     fun mostrarDatos(): Cursor? {
-        val db : SQLiteDatabase = this.readableDatabase /*Abrimos la base de datos en modo lectura*/
+        val db : SQLiteDatabase = this.readableDatabase
+        /*Abrimos la base de datos en modo lectura*/
         val cursor = db.rawQuery(
             "SELECT * FROM amigos",
             null)
         return cursor
+    }
+
+    fun borrarDato(id: Int) : Int {
+        val args = arrayOf(id.toString())
+
+        val db = this.writableDatabase
+        val borrados = db.delete("amigos", "id = ?", args)
+        // db.execSQL("DELETE FROM amigos WHERE id = ?", args)
+        db.close()
+        return borrados
+    }
+
+    fun modificarDato(id: Int, nombre: String, email: String) {
+        val args = arrayOf(id.toString())
+
+        val datos = ContentValues()
+        datos.put("nombre", nombre)
+        datos.put("email", email)
+
+        val db = this.writableDatabase
+        db.update("amigos", datos, "id = ?", args)
+       // db.execSQL("UPATE amigos SET nombre = ?, email = ?, WHERE id = ?",nombre,email, args)
+        db.close()
     }
 
 
